@@ -11,7 +11,7 @@ export default function App() {
   }
 
   if (!user) {
-    return <LoginPage loading={false} isAuthed={false} />;
+    return <LoginPage loading={false} />;
   }
 
   return <CanonicalApp />;
