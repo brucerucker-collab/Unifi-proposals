@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase';
 
 export function LoginPage({
   loading,
-  isAuthed,
 }: {
   loading: boolean;
-  isAuthed: boolean;
+  isAuthed?: boolean;
 }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,7 +14,6 @@ export function LoginPage({
   const [busy, setBusy] = useState(false);
 
   if (loading) return <div style={{ padding: 24 }}>Loading…</div>;
-  if (isAuthed) return <Navigate to="/dashboard" replace />;
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -41,7 +38,8 @@ export function LoginPage({
       <form onSubmit={onSubmit}>
         <div style={{ marginBottom: 12 }}>
           <label>
-            Email<br />
+            Email
+            <br />
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -53,7 +51,8 @@ export function LoginPage({
 
         <div style={{ marginBottom: 12 }}>
           <label>
-            Password<br />
+            Password
+            <br />
             <input
               type="password"
               value={password}
