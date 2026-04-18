@@ -1,1 +1,1 @@
-export { default } from './send-proposal.gmail';
+export { handler } from './send-proposal.gmail';
