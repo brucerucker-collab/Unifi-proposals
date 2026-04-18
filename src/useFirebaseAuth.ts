@@ -11,6 +11,7 @@ export function useFirebaseAuth() {
       setUser(u);
       setLoading(false);
     });
+
     return () => unsub();
   }, []);
 
