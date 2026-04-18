@@ -1,10 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useFirebaseAuth } from './useFirebaseAuth';
 import { LoginPage } from './LoginPage';
 import CanonicalApp from '../App.canonical';
 
-function ProtectedLayout() {
+export default function App() {
   const { user, loading } = useFirebaseAuth();
 
   if (loading) {
@@ -12,24 +11,8 @@ function ProtectedLayout() {
   }
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <LoginPage loading={false} isAuthed={false} />;
   }
 
   return <CanonicalApp />;
-}
-
-export default function App() {
-  const { user, loading } = useFirebaseAuth();
-
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/login"
-          element={<LoginPage loading={loading} isAuthed={!!user} />}
-        />
-        <Route path="/*" element={<ProtectedLayout />} />
-      </Routes>
-    </BrowserRouter>
-  );
 }
