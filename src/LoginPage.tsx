@@ -6,14 +6,15 @@ export function LoginPage({
   loading,
 }: {
   loading: boolean;
-  isAuthed?: boolean;
 }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  if (loading) return <div style={{ padding: 24 }}>Loading…</div>;
+  if (loading) {
+    return <div style={{ padding: 24 }}>Loading…</div>;
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
